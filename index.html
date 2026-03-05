@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>FIREWALL X – Cyber Toolkit</title>
+
+<style>
+
+body{
+margin:0;
+background:#020b1c;
+color:#7fdfff;
+font-family:Consolas, monospace;
+text-align:center;
+}
+
+/* TITLE */
+
+h1{
+font-size:45px;
+color:#00e5ff;
+text-shadow:0 0 10px #00e5ff,0 0 25px #00e5ff;
+}
+
+/* NAVBAR */
+
+nav{
+background:#061a3a;
+padding:15px;
+box-shadow:0 0 15px #00e5ff;
+}
+
+nav button{
+background:transparent;
+color:#7fdfff;
+border:2px solid #00e5ff;
+padding:10px 25px;
+margin:5px;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+}
+
+nav button:hover{
+background:#00e5ff;
+color:black;
+}
+
+/* PAGES */
+
+.page{
+display:none;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+/* CYBER BOX */
+
+.cyberBox{
+background:#061a3a;
+border:2px solid #00e5ff;
+padding:30px;
+width:60%;
+margin:auto;
+margin-top:20px;
+box-shadow:0 0 15px #00e5ff33;
+}
+
+/* INPUTS */
+
+input{
+padding:10px;
+width:250px;
+font-size:16px;
+}
+
+/* BUTTON */
+
+.toolbtn{
+background:#00e5ff;
+color:black;
+border:none;
+padding:10px 20px;
+margin:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* OUTPUT */
+
+.output{
+margin-top:15px;
+font-size:20px;
+}
+
+a{
+color:#00e5ff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🔥 FIREWALL X</h1>
+
+<nav>
+
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('about')">About</button>
+<button onclick="showPage('tools')">Cyber tool kit</button>
+
+</nav>
+
+<!-- HOME -->
+
+
+<div id="home" class="page active">
+
+<div class="cyberBox">
+
+<h2>Welcome to FIREWALL X</h2>
+
+<p>A futuristic cybersecurity toolkit.</p>
+
+<p>Use the tools to generate strong passwords, check password strength and stay safe online.</p>
+
+<h3>🌐 Our Other Websites</h3>
+
+<p>👻 Official site:</p>
+
+<a href="https://nightrangers.github.io/swag-of-horror/" target="_blank">
+Swag of Horror
+</a>
+
+<br><br>
+
+<p>🛡 Cyber Security AI:</p>
+
+<a href="https://cypher-guard-ai.netlify.app/" target="_blank">
+Cypher Guard AI
+</a>
+
+</div>
+
+</div>
+<!-- TOOLS -->
+
+<div id="tools" class="page">
+
+<div class="cyberBox">
+
+<h2>Password Generator</h2>
+
+<button class="toolbtn" onclick="generatePassword()">Generate</button>
+
+<div id="passwordOutput" class="output"></div>
+
+</div>
+
+
+<div class="cyberBox">
+
+<h2>Password Strength Checker</h2>
+
+<input type="text" id="passwordInput" placeholder="Enter password">
+
+<br>
+
+<button class="toolbtn" onclick="checkStrength()">Check</button>
+
+<div id="strengthOutput" class="output"></div>
+
+</div>
+
+
+<div class="cyberBox">
+
+<h2>Website URL Scanner</h2>
+
+<input type="text" id="urlInput" placeholder="Enter website URL">
+
+<br>
+
+<button class="toolbtn" onclick="scanURL()">Scan</button>
+
+<div id="urlOutput" class="output"></div>
+
+</div>
+
+
+<div class="cyberBox">
+
+<h2>Cyber Tips AI</h2>
+
+<button class="toolbtn" onclick="getTip()">Get Tip</button>
+
+<div id="tipOutput" class="output"></div>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<div id="about" class="page">
+
+<div class="cyberBox">
+
+<h2>About</h2>
+
+<p>FIREWALL X is a cybersecurity toolkit designed by middle school developers.</p>
+
+<p>It helps people create secure passwords and learn about cyber safety.</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* PAGE SWITCH */
+
+function showPage(id){
+
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
+
+document.getElementById(id).classList.add("active")
+
+}
+
+/* PASSWORD GENERATOR */
+
+function generatePassword(){
+
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
+
+let pass=""
+
+for(let i=0;i<12;i++){
+
+pass+=chars[Math.floor(Math.random()*chars.length)]
+
+}
+
+document.getElementById("passwordOutput").innerText=pass
+
+}
+
+/* PASSWORD STRENGTH */
+
+function checkStrength(){
+
+let pass=document.getElementById("passwordInput").value
+
+let score=0
+
+if(pass.length>8) score++
+if(/[A-Z]/.test(pass)) score++
+if(/[0-9]/.test(pass)) score++
+if(/[!@#$%^&*]/.test(pass)) score++
+
+let result="Weak"
+
+if(score==2) result="Medium"
+if(score>=3) result="Strong"
+
+document.getElementById("strengthOutput").innerText=result
+
+}
+
+/* URL SCANNER */
+
+function scanURL(){
+
+let url=document.getElementById("urlInput").value
+
+if(url.includes("https")){
+
+document.getElementById("urlOutput").innerText="Likely Safe Website"
+
+}else{
+
+document.getElementById("urlOutput").innerText="Warning: Not Secure"
+
+}
+
+}
+
+/* CYBER TIPS */
+
+let tips=[
+
+"Use different passwords for every account.",
+"Enable two-factor authentication.",
+"Never click suspicious links.",
+"Keep your software updated.",
+"Use strong passwords with symbols."
+
+]
+
+function getTip(){
+
+let tip=tips[Math.floor(Math.random()*tips.length)]
+
+document.getElementById("tipOutput").innerText=tip
+
+}
+
+</script>
+
+</body>
+</html>
